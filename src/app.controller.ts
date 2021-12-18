@@ -11,8 +11,9 @@ import {
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @MessagePattern('notification')
+  @MessagePattern('notification-pattern')
   public async execute(@Payload() data: any, @Ctx() context: RmqContext) {
+    console.log('here');
     const channel = context.getChannelRef();
     const originalMessage = context.getMessage();
 
