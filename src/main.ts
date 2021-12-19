@@ -3,9 +3,8 @@ import { AppModule } from './app.module';
 import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
-  const RMQ_URL =
-    'amqps://empnayyn:1oQzA2-FRc1LFNDvVi6leb_Zmrr7lDnX@poodle.rmq2.cloudamqp.com/empnayyn';
-  const QUEUE_NAME = 'notification-queue';
+  const RMQ_URL = process.env.RABBIT_URL;
+  const QUEUE_NAME = process.env.QUEUE_NAME;
   const app = await NestFactory.createMicroservice(AppModule, {
     transport: Transport.RMQ,
     options: {
