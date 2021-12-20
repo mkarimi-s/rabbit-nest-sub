@@ -1,24 +1,25 @@
 import { Controller } from '@nestjs/common';
+import { notificationDto } from './dto/notification.dto';
 import {
-    Payload,
-    Ctx,
-    RmqContext,
-    MessagePattern,
+  Ctx,
+  MessagePattern,
+  Payload,
+  RmqContext,
 } from '@nestjs/microservices';
-import {NotificationService} from "./notification.service";
+import { NotificationService } from './notification.service';
 
 @Controller('notification')
 export class NotificationController {
+  constructor(private notificationService: NotificationService) {}
 
-    constructor(private readonly service: NotificationService) {
-    }
-
-    @MessagePattern('notification')
-    public async execute(@Payload() data: any, @Ctx() context: RmqContext) {
-        const channel = context.getChannelRef();
-        const originalMessage = context.getMessage();
-
-        this.service.getMessage(data);
-        channel.ack(originalMessage);
-    }
+  @MessagePattern('notification')
+  public async execute(
+    @Payload() data: notificationDto,
+    @Ctx() context: RmqContext,
+  ) {
+    const channel = context.getChannelRef();
+    const originalMessage = context.getMessage();
+    this.notificationService.send(data);
+    channel.ack(originalMessage);
+  }
 }

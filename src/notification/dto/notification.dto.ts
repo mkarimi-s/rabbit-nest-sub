@@ -1,6 +1,6 @@
-export class NotificationDto {
-    to: string;
-    message: string;
-    type: string;
-    correlation_id: number;
+export class notificationDto {
+  to: string;
+  type: string;
+  message: string;
+  correlation_id: number;
 }
