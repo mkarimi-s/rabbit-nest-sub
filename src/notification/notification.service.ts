@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import {NotificationDto} from "./dto/notification.dto";
-import {SenderInterface} from "./sender/sender-interface";
 import {Sender} from "./sender/sender";
 import {EmailSender} from "./sender/email-sender";
 import {SmsSender} from "./sender/sms-sender";
