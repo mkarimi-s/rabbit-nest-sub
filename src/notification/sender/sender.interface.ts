@@ -1,5 +1,5 @@
-import { notificationDto } from '../dto/notification.dto';
+import { NotificationDto } from '../dto/notification.dto';
 
 export interface SenderInterface {
-  send(data: notificationDto);
+  send(data: NotificationDto);
 }

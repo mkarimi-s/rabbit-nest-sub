@@ -1,11 +1,11 @@
 import { SenderInterface } from './sender.interface';
-import { notificationDto } from '../dto/notification.dto';
+import { NotificationDto } from '../dto/notification.dto';
 
 export class Sender {
   private sender: SenderInterface;
-  private data: notificationDto;
+  private data: NotificationDto;
 
-  constructor(sender: SenderInterface, data: notificationDto) {
+  constructor(sender: SenderInterface, data: NotificationDto) {
     this.sender = sender;
     this.data = data;
   }

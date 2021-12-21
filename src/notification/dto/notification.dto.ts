@@ -1,4 +1,4 @@
-export class notificationDto {
+export class NotificationDto {
   to: string;
   type: string;
   message: string;

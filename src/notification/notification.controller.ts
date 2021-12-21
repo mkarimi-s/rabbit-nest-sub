@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { notificationDto } from './dto/notification.dto';
+import { NotificationDto } from './dto/notification.dto';
 import {
   Ctx,
   MessagePattern,
@@ -14,7 +14,7 @@ export class NotificationController {
 
   @MessagePattern('notification')
   public async execute(
-    @Payload() data: notificationDto,
+    @Payload() data: NotificationDto,
     @Ctx() context: RmqContext,
   ) {
     const channel = context.getChannelRef();

@@ -1,8 +1,8 @@
 import { SenderInterface } from './sender.interface';
-import { notificationDto } from '../dto/notification.dto';
+import { NotificationDto } from '../dto/notification.dto';
 
 export class SmsSender implements SenderInterface {
-  send(data: notificationDto) {
+  send(data: NotificationDto) {
     console.log('sms',data);
   }
 }
