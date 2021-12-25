@@ -20,6 +20,7 @@ export class NotificationController {
     const channel = context.getChannelRef();
     const originalMessage = context.getMessage();
     this.notificationService.send(data);
+    await this.notificationService.store(data);
     channel.ack(originalMessage);
   }
 }
