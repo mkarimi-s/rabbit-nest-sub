@@ -6,6 +6,9 @@ export type NotificationDocument = Notification & Document;
 @Schema()
 export class Notification {
   @Prop()
+  project: string;
+
+  @Prop()
   type: string;
 
   @Prop()
