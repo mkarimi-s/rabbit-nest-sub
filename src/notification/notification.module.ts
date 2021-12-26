@@ -9,7 +9,6 @@ import { Notification, NotificationSchema } from './schema/notification.schema';
 @Module({
   imports: [
     MailModule,
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/notification'),
     MongooseModule.forFeature([
       { name: Notification.name, schema: NotificationSchema },
     ]),

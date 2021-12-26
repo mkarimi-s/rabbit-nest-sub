@@ -5,7 +5,6 @@ import { MailService } from './mail.service';
 import { join } from 'path';
 import { ConfigService } from '@nestjs/config';
 
-console.log('here', process.env.MAIL_HOST);
 @Module({
   imports: [
     MailerModule.forRootAsync({
