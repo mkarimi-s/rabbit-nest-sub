@@ -10,19 +10,22 @@ import {
 } from './schema/notification.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class NotificationService {
   constructor(
-    @InjectModel(Notification.name) private notificationModel: Model<NotificationDocument>,
+    @InjectModel(Notification.name)
+    private notificationModel: Model<NotificationDocument>,
     private mailService: MailService,
+    private httpService: HttpService,
   ) {}
 
   send(data: NotificationDto) {
     if (data.type === 'mail') {
       new Sender(new MailSender(this.mailService), data).send();
     } else if (data.type === 'sms') {
-      new Sender(new SmsSender(), data).send();
+      new Sender(new SmsSender(this.httpService), data).send();
     }
   }
 

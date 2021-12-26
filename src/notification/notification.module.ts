@@ -5,9 +5,11 @@ import { MailModule } from '../mail/mail.module';
 import { MailService } from '../mail/mail.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Notification, NotificationSchema } from './schema/notification.schema';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
+    HttpModule,
     MailModule,
     MongooseModule.forFeature([
       { name: Notification.name, schema: NotificationSchema },
