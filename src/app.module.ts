@@ -12,7 +12,6 @@ import { MongooseModule } from '@nestjs/mongoose';
     }),
     MongooseModule.forRoot(process.env.MONGO_URI + process.env.MONGO_DB_NAME),
     NotificationModule,
-    MailModule,
   ],
   controllers: [],
   providers: [],

@@ -1,11 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Transport } from '@nestjs/microservices';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const RMQ_URL = process.env.RABBIT_URL;
   const QUEUE_NAME = process.env.QUEUE_NAME;
-  const app = await NestFactory.createMicroservice(AppModule, {
+  const app = await NestFactory.create(AppModule);
+  const microserviceTcp = app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,
     options: {
       urls: [RMQ_URL],
@@ -14,6 +15,7 @@ async function bootstrap() {
       prefetchCount: 1,
     },
   });
-  await app.listen();
+  await app.startAllMicroservices();
+  await app.listen(process.env.APP_PORT || 3000);
 }
 bootstrap();
