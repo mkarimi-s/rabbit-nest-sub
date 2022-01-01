@@ -11,6 +11,7 @@ import {
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { HttpService } from '@nestjs/axios';
+import { SenderInterface } from './sender/sender.interface';
 
 @Injectable()
 export class NotificationService {
@@ -22,11 +23,13 @@ export class NotificationService {
   ) {}
 
   send(data: NotificationDto) {
+    let sender: SenderInterface;
     if (data.type === 'mail') {
-      new Sender(new MailSender(this.mailService), data).send();
+      sender = new MailSender(this.mailService);
     } else if (data.type === 'sms') {
-      new Sender(new SmsSender(this.httpService), data).send();
+      sender = new SmsSender(this.httpService);
     }
+    new Sender(sender, data).send();
   }
 
   store(notification: Notification): Promise<Notification> {
